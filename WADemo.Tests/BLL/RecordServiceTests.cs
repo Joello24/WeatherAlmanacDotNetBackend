@@ -1,9 +1,13 @@
 ﻿using System;
+using Ninject;
 using NUnit.Framework;
 using WADemo.BLL;
 using WADemo.Core;
 using WADemo.Core.Interfaces;
 using WADemo.DAL;
+using WADemo.App;
+using WADemo.UI;
+using WeatherAlmanac.Core.DTO;
 
 namespace WADemo.Tests.BLL;
 
@@ -14,10 +18,16 @@ public class RecordServiceTests
   [SetUp]
   public void Setup()
   {
+    NinjectContainer.Configure(ApplicationMode.Test, LoggingMode.Console, "test.csv", "testlog.csv");
+
+    var controller = NinjectContainer.Kernel.Get<Controller>();
+    var service = NinjectContainer.Kernel.Get<IRecordService>();
+    var repository = NinjectContainer.Kernel.Get<IRecordRepository>();
+    
     // Arrange
     _recordService = new RecordService(new MockRecordRepository());
   }
-
+  
   [Test]
   public void Index_WithJan2019Range_ReturnsOneRecordWithHighTempOf75()
   {

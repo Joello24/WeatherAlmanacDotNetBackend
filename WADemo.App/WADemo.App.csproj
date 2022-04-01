@@ -13,4 +13,8 @@
       <ProjectReference Include="..\WADemo.UI\WADemo.UI.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Ninject" Version="4.0.0-beta-0134" />
+    </ItemGroup>
+
 </Project>

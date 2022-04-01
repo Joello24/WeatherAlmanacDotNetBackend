@@ -1,5 +1,6 @@
 using WADemo.Core;
 using WADemo.Core.Interfaces;
+using WeatherAlmanac.Core;
 
 namespace WADemo.DAL;
 
@@ -7,11 +8,12 @@ public class CsvRecordRepository : IRecordRepository
 {
   private readonly string _fileName;
   private readonly List<WeatherRecord> _records;
-
-  public CsvRecordRepository(string fileName)
+  private readonly ILogger _logger;
+  public CsvRecordRepository(string fileName, ILogger logger)
   {
-    _fileName = fileName;
+    _logger = logger;
     _records = new List<WeatherRecord>();
+    _fileName = fileName;
     Init();
   }
 

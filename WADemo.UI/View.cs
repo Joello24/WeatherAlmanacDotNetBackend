@@ -1,11 +1,22 @@
 // BLL will catch invalid temp values - whatever console misses 🥅
 
 using WADemo.Core;
+using WeatherAlmanac.Core.DTO;
 
 namespace WADemo.UI;
 
 public static class View
 {
+
+  public static int GetLoggingMode()
+  {
+    return (int)Validation.PromptUser4Num(@"What logging mode do you want to use?
+1. No logging
+2. Log to console
+3. Log to file
+", 1, 3);
+  }
+
   internal static bool Confirm(string message = "Are you sure?")
   {
     Console.Write(message + " (y/n)");
